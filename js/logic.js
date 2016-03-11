@@ -8,9 +8,9 @@ angular.module('bankAccount',[
             templateUrl: 'views/register.html',
             controller : 'RegisterCtrl'
         })
-        .when('/account', {
-            templateUrl: 'views/account.html',
-            controller : 'AccountCtrl'
+        .when('/movements', {
+            templateUrl: 'views/movements.html',
+            controller : 'MovementsCtrl'
         })
         .otherwise({redirectTo: '/'});
 }]);
