@@ -13,7 +13,31 @@ angular.module ('bankAccount.controllers')
               $scope.accountCurrency = "‎CRC₡";
             }
 
-            $scope.limitSearch = 10;
-            $scope.itemDate = "date";
+            $scope.numLimit = 10;
+            $scope.balance = 0;
+
+            var balanceDebits = [];
+            var balanceCredits = [];
+
+            for (var i = 0; i < $scope.myBank__Movements.length; i++) {
+                var movement = $scope.myBank__Movements[i];
+
+                if (movement.type === "Debit") {
+                    balanceDebits.push(movement.amount);
+                } else {
+                    balanceCredits.push(movement.amount);
+                }
+            }
+
+            $scope.debitsTotal = returnTotal(balanceDebits);
+            $scope.creditsTotal = returnTotal(balanceCredits);
+
+            function returnTotal (array) {
+                var total = 0;
+                for (var i = 0; i < array.length; i++) {
+                    total += array[i];
+                }
+                return total.toFixed(2);
+            };
         }
     ])

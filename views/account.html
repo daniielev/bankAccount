@@ -11,6 +11,12 @@
         <p>You cannot view a history of your account because there are not movements registered. Go to <a href="#movements">Movements</a> to register a new one.</p>
     </div>
 
+    <hr>
+    <p>These are the general balaces</p>
+    <h5>Credits: {{ accountCurrency }}{{ creditsTotal | currency:"" }}</h5>
+    <h5>Debits: {{ accountCurrency }}{{ debitsTotal | currency:"" }}</h5>
+    <hr>
+
     <table class="stack hover" ng-show="myBank__Movements.length > 0">
         <thead>
             <tr>
@@ -23,7 +29,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="item in myBank__Movements | orderBy:'date':true | limitTo:limitSearch">
+            <tr ng-repeat="item in myBank__Movements | orderBy:'date':true | limitTo:numLimit">
                 <td>{{ item.id }}</td>
                 <td>{{ item.date | date:"yyyy/M/dd" }}</td>
                 <td>{{ accountCurrency }}{{ item.amount | currency:"" }}</td>
@@ -32,5 +38,6 @@
                 <td><a href="#/details/{{ item.id }}" title="See Movement Details"><i class="fa fa-link"></i></a></td>
             </tr>
         </tbody>
+        <caption>Here's your latest 10 transactions</caption>
     </table>
 </div>
