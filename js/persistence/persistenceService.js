@@ -16,10 +16,38 @@ angular.module('persistence.services')
             localStorage.removeItem(key);
         };
 
+        /**Esta funcion es para retornar el Id de cada Movimiento*/
+        var getItem = function(tasksCollection, targetID) {
+            var item;
+
+            for (var i = 0; i < tasksCollection.length; i++) {
+                if (tasksCollection[i].id == targetID) {
+                    item = tasksCollection[i];
+                }
+            };
+
+            return item;
+        };
+
+        /**Esta función es para retornar la posición del Movimiento*/
+        var getItemIndex = function (tasksCollection, targetID) {
+            var index;
+
+            for (var i = 0; i < tasksCollection.length; i++) {
+                if (tasksCollection[i].id == targetID) {
+                    index = i;
+                }
+            };
+
+            return index;
+        };
+
         return {
             save         : saveKey,
             verify       : verifyKey,
-            remove       : removeKey
+            remove       : removeKey,
+            getItem      : getItem,
+            getItemIndex : getItemIndex
         };
     }
 );
