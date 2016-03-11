@@ -15,7 +15,7 @@ header {
     padding-top: 20px;
     border-right: 1px solid lightgray;
     background-color: #253341;
-    min-height: 100vh;
+    min-height: 1000px;
 }
 
 .main-navigation {
