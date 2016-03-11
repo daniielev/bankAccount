@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Bank Account</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <div class="main-app" ng-app="bankAccount">
+        <header class="small-12 large-2 columns">
+            <div class="heading">
+                <h3 class="user-name">Welcome, <span>{{ user.name }}</span></h3>
+                <p><small>My Bank Account</small></p>
+            </div>
+            <ul class="no-bullets main-navigation">
+                <li><a class="active" href="#/register"><i class="fa fa-user"></i> Register</a></li>
+                <li><a href="#/account"><i class="fa fa-info"></i> Account Information</a></li>
+                <li><a href="#/movements"><i class="fa fa-line-chart"></i> Add Movement</a></li>
+                <li><a href="#/details"><i class="fa fa-list"></i> Details</a></li>
+            </ul>
+        </header>
+        <div class="small-12 large-10 columns main-content">
+            <div ng-view></div>
+        </div>
+    </div>
+
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/logic.js"></script>
+    <!-- LocalStorage Service -->
+    <script src="js/persistence/logic.js"></script>
+    <script src="js/persistence/persistenceService.js"></script>
+    <!-- Controllers -->
+    <script src="js/controllers.js"></script>
+    <script src="js/RegisterCtrl.js"></script>
+</body>
+</html>
