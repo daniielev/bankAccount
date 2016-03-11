@@ -31,6 +31,7 @@ angular.module ('bankAccount.controllers')
 
             $scope.debitsTotal = returnTotal(balanceDebits);
             $scope.creditsTotal = returnTotal(balanceCredits);
+            $scope.balance = $scope.creditsTotal - $scope.debitsTotal;
 
             function returnTotal (array) {
                 var total = 0;

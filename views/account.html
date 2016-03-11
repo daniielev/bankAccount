@@ -15,6 +15,7 @@
     <p>These are the general balaces for your account:</p>
     <h5>Credits: {{ accountCurrency }}{{ creditsTotal | currency:"" }}</h5>
     <h5>Debits: {{ accountCurrency }}{{ debitsTotal | currency:"" }}</h5>
+    <h5>Balance: {{ accountCurrency }}{{ balance | currency:"" }}</h5>
     <hr>
 
     <table class="stack hover" ng-show="myBank__Movements.length > 0">

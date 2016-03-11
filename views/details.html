@@ -1,0 +1,15 @@
+<h4>Movement Detail</h4>
+<small>This the the summary for the movement you have selected.</small>
+<hr>
+
+<div class="callout alert" ng-show="notFound">
+    <h5><i class="fa fa-search-minus"></i> No movement found</h5>
+    <p>We couldn't find any movement with the requested ID. Please review and try again.</p>
+</div>
+
+<div class="callout primary" ng-show="!notFound">
+    <p><i class="fa fa-database"></i> Transaction #{{ singleMovement.id }}</p>
+    <h1 class="subheader">{{ singleMovement.detail }}</h1>
+    <p><i class="fa fa-calendar-o"></i> {{ singleMovement.date | date:"EEEE, MMMM d, y" }}</p>
+    <p><i ng-class="{'fa fa-plus':isCredit, 'fa fa-minus':isDebit}"></i> {{ singleMovement.type }}</p>
+</div>
