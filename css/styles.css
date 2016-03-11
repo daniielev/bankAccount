@@ -55,3 +55,14 @@ header {
 .main-content {
     padding: 20px;
 }
+
+.generalForms {
+    max-width: 800px;
+    margin: 25px auto;
+}
+
+.form-error {
+    margin-bottom: 0;
+    display: block;
+    padding: 8px 0;
+}

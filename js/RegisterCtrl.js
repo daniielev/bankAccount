@@ -3,17 +3,34 @@ angular.module ('bankAccount.controllers')
         '$scope',
         'PersistenceService',
         function($scope, PersistenceService) {
-          console.log("You're on the Register view!");
+            var localStorageKey = "myAccount";
 
-          // var localStorageKey = "List";
+            $scope.myBank__Account = PersistenceService.verify(localStorageKey) || [];
+            $scope.currentUser = $scope.myBank__Account.owner || "User";
 
-          // /**
-          //  * Busca en localStorage si existen las llaves @localStorageKey y
-          //  *  @taskLastID, si existen entonces retorna sus valores, si no
-          //  *  entonces los crea
-          //  */
-          // $scope.tasksCol = PersistenceService.verify(localStorageKey) || [];
-          // $scope.lastID = PersistenceService.verify("taskLastID") || 0;
+            $scope.saveAccount = function () {
+                if ($scope.myBank__Account.length === 0) {
+                    var account = {
+                        "owner"    : $scope.accountOwner,
+                        "type"     : $scope.accountType,
+                        "currency" : $scope.accountCurrency
+                    };
+
+                    $scope.myBank__Account.push(account);
+
+                    if ($scope.registrationForm) {
+                        $scope.registrationForm.$setPristine();
+                        $scope.registrationForm.$setUntouched();
+                        $scope.accountOwner = "";
+                        $scope.accountType = "";
+                        $scope.accountCurrency = "";
+                    }
+                }
+            };
+
+            $scope.$watch('myBank__Account', function(newValue, oldValue) {
+                PersistenceService.save(localStorageKey, newValue);
+            }, true);
 
           // $scope.notFound = false;
 
@@ -29,14 +46,6 @@ angular.module ('bankAccount.controllers')
           //       done : false
           //   }
           //   $scope.tasksCol.push(taskItem);
-
-          //   *
-          //    * This is an example of a function
-          //    * @return {number} [this is the item index on the collection]
-
-          //   function sample() {
-
-          //   }
 
           //   // Limpia el formulario, tanto en valores como en estado de variables
           //   if ($scope.taskForm) {

@@ -1,6 +1,33 @@
 <h4>Register your Account</h4>
-<form>
+<div class="callout success" ng-show="myBank__Account.length > 0">
+    <small>Your bank account information has been saved!</small>
+</div>
+<form class="generalForms" ng-show="!myBank__Account.length > 0" name="registrationForm">
     <div class="row">
-
+        <label>
+            Please type your name:
+            <span class="form-error" ng-show="registrationForm.name.$touched && registrationForm.name.$invalid">Your name is required.</span>
+            <input type="text" named="name" ng-model="accountOwner" required>
+        </label>
+    </div>
+    <div class="row">
+        <fieldset class="large-4 columns">
+            <legend>Account Type</legend>
+            <input type="radio" ng-model="accountType" value="Current" id="currentA" checked><label for="currentA">Current</label>
+            <input type="radio" ng-model="accountType" value="Savings" id="savingsA" required><label for="savingsA">Savings</label>
+        </fieldset>
+        <label class="large-8 columns">
+            Currency
+            <select name="theCurrency" ng-model="accountCurrency" required>
+                <option value="">---Please select---</option>
+                <option value="USD">USD</option>
+                <option value="CRC">CRC</option>
+            </select>
+        </label>
+    </div>
+    <div class="row">
+        <div class="large-2 columns">
+            <button type="button" ng-click="saveAccount()" class="success button expanded" ng-disabled="registrationForm.$invalid">Save</button>
+        </div>
     </div>
 </form>
