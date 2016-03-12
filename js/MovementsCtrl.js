@@ -3,7 +3,9 @@ angular.module ('bankAccount.controllers')
         '$scope',
         'PersistenceService',
         function($scope, PersistenceService) {
-            // Sets the Data
+            /*
+            Reads the data from the localStorage
+             */
             $scope.myBank__Account = PersistenceService.verify("myAccount");
             $scope.myBank__Movements = PersistenceService.verify("myMovements") || [];
 
@@ -11,6 +13,7 @@ angular.module ('bankAccount.controllers')
 
             $scope.myBank__movementLastID = PersistenceService.verify("lastMovementID") || 0;
 
+            // If the account is not set yet, then do nothing
             if ($scope.myBank__Account != undefined) {
                 if ($scope.myBank__Account.length > 0) {
                     if ($scope.myBank__Account[0].currency === "USD") {
@@ -21,6 +24,10 @@ angular.module ('bankAccount.controllers')
                 }
             }
 
+            /*
+            Registers the movent on the collection,
+            then clears the form
+             */
             $scope.registerMovement = function () {
               $scope.myBank__movementLastID++;
 

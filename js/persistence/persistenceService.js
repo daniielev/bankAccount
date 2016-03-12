@@ -16,7 +16,12 @@ angular.module('persistence.services')
             localStorage.removeItem(key);
         };
 
-        /**Esta funcion es para retornar el Id de cada Movimiento*/
+        /**
+         * Returns the specific item form the collection
+         * @param  {object} tasksCollection The collection where all the items are stored
+         * @param  {number} targetID        The item id that you want
+         * @return {object}                 The item you want
+         */
         var getItem = function(tasksCollection, targetID) {
             var item;
 
@@ -29,7 +34,12 @@ angular.module('persistence.services')
             return item;
         };
 
-        /**Esta función es para retornar la posición del Movimiento*/
+        /**
+         * Looks within the collection and returns the index of the item desired.
+         * @param  {object} tasksCollection The collection where all the items are stored
+         * @param  {number} targetID        The item id that you want
+         * @return {number}                 The item index inside the collection
+         */
         var getItemIndex = function (tasksCollection, targetID) {
             var index;
 
