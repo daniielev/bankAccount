@@ -3,9 +3,9 @@ angular.module ('bankAccount.controllers')
         '$scope',
         'PersistenceService',
         function($scope, PersistenceService) {
-            var localStorageKey = "myAccount";
-
-            $scope.myBank__Account = PersistenceService.verify(localStorageKey) || [];
+            // Sets the Data
+            $scope.myBank__Account = PersistenceService.verify("myAccount") || [];
+            $scope.myBank__Movements = PersistenceService.verify("myMovements") || [];
 
             $scope.saveAccount = function () {
               if ($scope.myBank__Account.length === 0) {
@@ -28,7 +28,7 @@ angular.module ('bankAccount.controllers')
             };
 
             $scope.$watch('myBank__Account', function(newValue, oldValue) {
-                PersistenceService.save(localStorageKey, newValue);
+                PersistenceService.save("myAccount", newValue);
             }, true);
         }
     ])

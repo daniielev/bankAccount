@@ -3,17 +3,22 @@ angular.module ('bankAccount.controllers')
         '$scope',
         'PersistenceService',
         function($scope, PersistenceService) {
+            // Sets the Data
+            $scope.myBank__Account = PersistenceService.verify("myAccount");
+            $scope.myBank__Movements = PersistenceService.verify("myMovements") || [];
 
-            $scope.myBank__Account = PersistenceService.verify("myAccount")[0];
             $scope.flag = ($scope.myBank__Account) ? true : false;
 
-            $scope.myBank__Movements = PersistenceService.verify("myMovements") || [];
             $scope.myBank__movementLastID = PersistenceService.verify("lastMovementID") || 0;
 
-            if ($scope.myBank__Account.currency === "USD") {
-              $scope.accountCurrency = "US$";
-            } else {
-              $scope.accountCurrency = "‎CRC₡";
+            if ($scope.myBank__Account != undefined) {
+                if ($scope.myBank__Account.length > 0) {
+                    if ($scope.myBank__Account[0].currency === "USD") {
+                      $scope.accountCurrency = "US$";
+                    } else {
+                      $scope.accountCurrency = "‎CRC₡";
+                    }
+                }
             }
 
             $scope.registerMovement = function () {

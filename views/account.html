@@ -1,7 +1,12 @@
 <h4>Account Summary</h4>
 <p>Here you will be able to see all your movements and your balance.</p>
 
-<div class="callout">
+<div class="callout alert" ng-show="!myBank__Account">
+    <h5>Account required!</h5>
+    <p>You have no registered any bank account. Go to <a href="#register">Register</a> to register a new account.</p>
+</div>
+
+<div class="callout" ng-show="myBank__Account">
     <h4 class="subheader"><i class="fa fa-user"></i> {{ myBank__Account.owner }}</h4>
     <p>Owns a <strong>{{ myBank__Account.type }}</strong> account.</p>
     <p>The money for the account is <strong>{{ myBank__Account.currency }}</strong></p>
@@ -12,11 +17,14 @@
     </div>
 
     <hr>
-    <p>These are the general balaces for your account:</p>
-    <h5>Credits: {{ accountCurrency }}{{ creditsTotal | currency:"" }}</h5>
-    <h5>Debits: {{ accountCurrency }}{{ debitsTotal | currency:"" }}</h5>
-    <h5>Balance: {{ accountCurrency }}{{ balance | currency:"" }}</h5>
-    <hr>
+
+    <div ng-show="myBank__Movements">
+        <p>These are the general balaces for your account:</p>
+        <h5>Credits: {{ accountCurrency }}{{ creditsTotal | currency:"" }}</h5>
+        <h5>Debits: {{ accountCurrency }}{{ debitsTotal | currency:"" }}</h5>
+        <h5>Balance: {{ accountCurrency }}{{ balance | currency:"" }}</h5>
+        <hr>
+    </div>
 
     <table class="stack hover" ng-show="myBank__Movements.length > 0">
         <thead>
